@@ -30,8 +30,16 @@
       outline-color: $error;
     }
 
-    &::placeholder {
-      color: lighten($primaryLight, 23%);
-    }
+      &::placeholder {
+    color: lighten($primaryLight, 23%);
   }
+}
+
+&__errors {
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  min-height: 1.6rem;
+  display: block;
+}
 }
