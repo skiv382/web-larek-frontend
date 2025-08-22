@@ -39,23 +39,7 @@ export class LoggingMiddleware implements EventMiddleware {
   name = 'LoggingMiddleware';
 
   async execute(event: EventMetadata, next: () => Promise<void>): Promise<void> {
-    console.group(`📡 Событие: ${event.name}`);
-    console.log('Данные:', event.data);
-    console.log('Контекст:', event.context);
-    console.log('Время:', new Date(event.timestamp).toISOString());
-    
-    const startTime = performance.now();
-    try {
-      await next();
-      const duration = performance.now() - startTime;
-      console.log(`✅ Выполнено за ${duration.toFixed(2)}ms`);
-    } catch (error) {
-      const duration = performance.now() - startTime;
-      console.error(`❌ Ошибка за ${duration.toFixed(2)}ms:`, error);
-      throw error;
-    } finally {
-      console.groupEnd();
-    }
+    await next();
   }
 }
 
