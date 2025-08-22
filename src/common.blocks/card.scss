@@ -57,8 +57,9 @@
 
 	&__image {
 		height: 390px;
-		aspect-ratio: 1;
+		width: auto;
 		margin: 3.75rem;
+		object-fit: contain;
 	}
 	&__title {
 		font-size: $titleFontSize;

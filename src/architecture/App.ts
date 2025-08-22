@@ -410,7 +410,7 @@ export class Application {
 
     if (titleElement) titleElement.textContent = item.title;
     if (imageElement) {
-      imageElement.src = item.image;
+      imageElement.src = this.getLocalImagePath(item.image);
       imageElement.alt = item.title;
     }
     if (priceElement) {
@@ -447,6 +447,27 @@ export class Application {
     };
     
     return categoryMap[category] || 'other';
+  }
+
+  /**
+   * Получить локальный путь к изображению
+   */
+  private getLocalImagePath(serverPath: string): string {
+    // Маппинг серверных путей на локальные файлы
+    const imageMap: Record<string, string> = {
+      'https://larek-api.nomoreparties.co/content/weblarek/5_Dots.svg': require('../images/5_Dots.svg.png'),
+      'https://larek-api.nomoreparties.co/content/weblarek/Shell.svg': require('../images/Shell.svg.png'),
+      'https://larek-api.nomoreparties.co/content/weblarek/Asterisk_2.svg': require('../images/Asterisk_2.svg.png'),
+      'https://larek-api.nomoreparties.co/content/weblarek/Soft_Flower.svg': require('../images/Soft_Flower.svg.png'),
+      'https://larek-api.nomoreparties.co/content/weblarek/mute-cat.svg': require('../images/mute-cat.svg.png'),
+      'https://larek-api.nomoreparties.co/content/weblarek/Pill.svg': require('../images/Pill.svg.png'),
+      'https://larek-api.nomoreparties.co/content/weblarek/Polygon.svg': require('../images/Polygon.svg.png'),
+      'https://larek-api.nomoreparties.co/content/weblarek/Butterfly.svg': require('../images/Butterfly.svg.png'),
+      'https://larek-api.nomoreparties.co/content/weblarek/Leaf.svg': require('../images/Leaf.svg.png'),
+      'https://larek-api.nomoreparties.co/content/weblarek/Mithosis.svg': require('../images/Mithosis.svg.png'),
+    };
+    
+    return imageMap[serverPath] || serverPath;
   }
 
   /**
@@ -881,7 +902,7 @@ export class Application {
 
       if (titleElement) titleElement.textContent = product.title;
       if (imageElement) {
-        imageElement.src = product.image;
+        imageElement.src = this.getLocalImagePath(product.image);
         imageElement.alt = product.title;
       }
       if (priceElement) {
